@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { IsAlpha } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Owner } from 'src/owner/entities/owner.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Pets {
@@ -15,4 +16,11 @@ export class Pets {
   @IsAlpha()
   @Field({ nullable: true })
   type?: string;
+
+  @Column()
+  @Field((type) => Int)
+  ownerId: number;
+  @ManyToOne(() => Owner, (owner) => owner.pets)
+  @Field((type) => Owner)
+  owner: Owner;
 }

@@ -22,14 +22,4 @@ export class OwnerResolver {
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.ownerService.findOne(id);
   }
-
-  @Mutation(() => Owner)
-  updateOwner(@Args('updateOwnerInput') updateOwnerInput: UpdateOwnerInput) {
-    return this.ownerService.update(updateOwnerInput.id, updateOwnerInput);
-  }
-
-  @Mutation(() => Owner)
-  removeOwner(@Args('id', { type: () => Int }) id: number) {
-    return this.ownerService.remove(id);
-  }
 }

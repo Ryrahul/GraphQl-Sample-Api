@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsAlpha, IsNotEmpty } from 'class-validator';
+import { IsAlpha, IsNotEmpty, IsNumber } from 'class-validator';
 
 @InputType()
 export class CreatePetInput {
@@ -9,4 +9,8 @@ export class CreatePetInput {
   name: string;
   @Field({ nullable: true })
   type?: string;
+
+  @Field()
+  @IsNumber()
+  ownerId: number;
 }
